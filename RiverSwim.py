@@ -125,10 +125,11 @@ def DPSolve():
         if stopping_criterion == True:
             break
 
-EPISODE_LENGTH = 10000
-EPISODE_AMOUNT = 1000    
+EPISODE_LENGTH = 100
+EPISODE_AMOUNT = 100
 EPSILON = 1
-                
+
+#As is right now, because we always take the current policy, we never explore the last states for low EPISODE_AMOUNT and EPISODE_LENGTH. I need the action_Decider.                
 def run_agent():
     for episode in range(EPISODE_AMOUNT):
         state = 0
@@ -143,6 +144,12 @@ def run_agent():
         constructMDP()
         DPSolve()
     print("Final policy: " + str(POLICY))
+    print("Final probabilities: " + str(PROBABILITIES))
+    print("Final rewards: " + str(REWARD_PROBABILITIES))
+    print("State action counts: " + str(STATE_ACTION))
+    print("State action transitions: " + str(TRANSITION))
+    print("State action rewards: " + str(REWARD))
+
 
 def action_decider(state: int) -> str:
     pass
